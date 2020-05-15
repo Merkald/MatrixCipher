@@ -12,12 +12,11 @@ public class MatrixСipher {
         String value = valueStr.toUpperCase();
         int mSize = (int) Math.floor(Math.sqrt(key.length()));
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < value.length(); i++) {
-            int position = key.indexOf(value.charAt(i));
-            int n = (int) Math.floor(position / mSize);
-            int m = position - mSize * n;
-            result.append(n).append(m);
-        }
+        value.codePoints().mapToObj(c -> (char) c)
+                .forEach(c -> result
+                        .append((int) Math.floor(key.indexOf(c) / mSize))
+                        .append((key.indexOf(c) - mSize * Character
+                                .getNumericValue(result.charAt(result.length()-1)))));
         return result.toString();
     }
 
