@@ -24,10 +24,10 @@ public class MatrixСipher {
     public String getEncryptedData(String patern) {
         String str = patern;
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < encryptedData.length(); i+=2) {
+        for (int i = 0; i < encryptedData.length(); i += 2) {
             result.append(str
-                    .replace('i',encryptedData.charAt(i))
-                    .replace('j',encryptedData.charAt(i+1)));
+                    .replace('i', encryptedData.charAt(i))
+                    .replace('j', encryptedData.charAt(i + 1)));
         }
         return result.toString();
     }
