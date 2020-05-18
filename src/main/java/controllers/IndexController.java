@@ -17,9 +17,10 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setAttribute("encryptedData", WordsMatrix.getEncryptedData(
-                WordsMatrix.encryptData(req.getParameter("key"),
-                        req.getParameter("value")),
+        WordsMatrix wordsMatrix = new WordsMatrix();
+        req.setAttribute("encryptedData", wordsMatrix.getEncryptedData(
+                wordsMatrix.encryptData(req.getParameter("matrix"),
+                        req.getParameter("word")),
                 req.getParameter("pattern")));
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }

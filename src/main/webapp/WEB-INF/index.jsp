@@ -22,13 +22,13 @@
                 <input type="password"
                        class="form-control"
                        aria-describedby="emailHelp"
-                       name="key">
+                       name="matrix">
             </div>
             <div class="card-body form-group">
                 <label class="mx-auto">value</label>
                 <input type="password"
                        class="form-control"
-                       name="value">
+                       name="word">
             </div>
             <div class="card-body form-group">
                 <label class="mx-auto">Pattern</label>
