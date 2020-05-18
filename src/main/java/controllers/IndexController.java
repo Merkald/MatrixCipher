@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.WordsMatrix;
 
 public class IndexController extends HttpServlet {
+    private WordsMatrix wordsMatrix = new WordsMatrix();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -17,7 +18,6 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        WordsMatrix wordsMatrix = new WordsMatrix();
         req.setAttribute("encryptedData", wordsMatrix.getEncryptedData(
                 wordsMatrix.encryptData(req.getParameter("matrix"),
                         req.getParameter("word")),
