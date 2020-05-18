@@ -1,13 +1,8 @@
 package model;
 
 public class WordsMatrix {
-    private final String encryptedData;
 
-    public WordsMatrix(String key, String value) {
-        this.encryptedData = encryptData(key, value);
-    }
-
-    private String encryptData(String keyStr, String valueStr) {
+    public static String encryptData(String keyStr, String valueStr) {
         String key = keyStr.toUpperCase();
         String value = valueStr.toUpperCase();
         int matrixSize = (int) Math.floor(Math.sqrt(key.length()));
@@ -20,7 +15,7 @@ public class WordsMatrix {
         return result.toString();
     }
 
-    public String getEncryptedData(String patern) {
+    public static String getEncryptedData(String encryptedData, String patern) {
         String str = patern;
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < encryptedData.length(); i += 2) {

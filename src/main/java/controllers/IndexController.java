@@ -17,10 +17,10 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        WordsMatrix wordsMatrix =
-                new WordsMatrix(req.getParameter("key"), req.getParameter("value"));
-        req.setAttribute("encryptedData", wordsMatrix
-                .getEncryptedData(req.getParameter("pattern")));
+        req.setAttribute("encryptedData", WordsMatrix.getEncryptedData(
+                WordsMatrix.encryptData(req.getParameter("key"),
+                        req.getParameter("value")),
+                req.getParameter("pattern")));
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }
