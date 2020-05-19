@@ -9,6 +9,7 @@ import model.WordsMatrix;
 
 public class IndexController extends HttpServlet {
     private WordsMatrix wordsMatrix = new WordsMatrix();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -18,10 +19,10 @@ public class IndexController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setAttribute("encryptedData", wordsMatrix.getEncryptedData(
+        req.setAttribute("encryptedData",
                 wordsMatrix.encryptData(req.getParameter("matrix"),
-                        req.getParameter("word")),
-                req.getParameter("pattern")));
+                        req.getParameter("word"),
+                        req.getParameter("pattern")));
         req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
     }
 }

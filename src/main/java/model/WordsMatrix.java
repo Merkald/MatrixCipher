@@ -2,17 +2,28 @@ package model;
 
 public class WordsMatrix {
 
-    public String encryptData(String matrixStr, String wordStr) {
+    public String encryptData(String matrixStr, String wordStr, String patern) {
         String matrix = matrixStr.toUpperCase();
         String word = wordStr.toUpperCase();
+        if (Math.sqrt(matrix.length()) % 1 != 0) {
+            return "Square matrix can not be formed.";
+        }
         int matrixSize = (int) Math.floor(Math.sqrt(matrix.length()));
         StringBuilder result = new StringBuilder();
-        word.codePoints().mapToObj(c -> (char) c)
-                .forEach(c -> result
-                        .append((int) Math.floor(matrix.indexOf(c) / matrixSize))
-                        .append((matrix.indexOf(c) - matrixSize * Character
-                                .getNumericValue(result.charAt(result.length() - 1)))));
-        return result.toString();
+        for (int i = 0; i < word.length(); i++) {
+            int position = matrix.indexOf(word.charAt(i));
+            if (position == -1) {
+                return "Symbol: " + word.charAt(i) + " doesnt exist in Matrix.";
+            }
+            int n = (int) Math.floor(position / matrixSize);
+            int m = position - matrixSize * n;
+            if (i > 0 && !(Character.getNumericValue(result.charAt((i - 1) * 2)) != n
+                    || Character.getNumericValue(result.charAt((i - 1) * 2 + 1)) != m)) {
+                return "Way not finded.";
+            }
+            result.append(n).append(m);
+        }
+        return getEncryptedData(result.toString(), patern);
     }
 
     public String getEncryptedData(String encryptedData, String patern) {
