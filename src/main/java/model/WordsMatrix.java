@@ -15,13 +15,13 @@ public class WordsMatrix {
             if (position == -1) {
                 return "Symbol: " + word.charAt(i) + " doesnt exist in Matrix.";
             }
-            int n = (int) Math.floor(position / matrixSize);
-            int m = position - matrixSize * n;
-            if (i > 0 && !(Character.getNumericValue(result.charAt((i - 1) * 2)) != n
-                    || Character.getNumericValue(result.charAt((i - 1) * 2 + 1)) != m)) {
+            int row = (int) Math.floor(position / matrixSize);
+            int column = position - matrixSize * row;
+            if (i > 0 && !(Character.getNumericValue(result.charAt((i - 1) * 2)) != row
+                    || Character.getNumericValue(result.charAt((i - 1) * 2 + 1)) != column)) {
                 return "Way not finded.";
             }
-            result.append(n).append(m);
+            result.append(row).append(column);
         }
         return getEncryptedData(result.toString(), patern);
     }
